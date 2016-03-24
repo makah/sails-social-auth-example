@@ -13,3 +13,4 @@ D0
 D1
 1. Implementar o Passport básico criado por [Giancarlo Soverini](http://iliketomatoes.com/implement-passport-js-authentication-with-sails-js-0-10-2/)
 
+fdsa
