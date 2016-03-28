@@ -11,6 +11,9 @@ Exemplo de uso: Chaveiro/Cliente; Médico/Paciente; Possuidor de Carro/Cliente; 
 3. Primeiro Commit
 
 #### D1 ####
-1. Implementar o Passport básico criado por [Giancarlo Soverini](http://iliketomatoes.com/implement-passport-js-authentication-with-sails-js-0-10-2/)
+1. Implementar o Passport básico criado por [Giancarlo Soverini](http://iliketomatoes.com/implement-passport-js-authentication-with-sails-js-0-10-2/) [commit](https://github.com/makah/FirstSailsProject/commit/811912dec01ab3d58142e4dceea6f2601c7e91d1)
+2. Criar uma tela que apenas logados podem entrar (com logout)
+3. Enviar o password encriptado para o servidor
+4. Criar esqueci minha senha
+5. Criar login pelo Google/Facebook
 
-fdsa

@@ -39,6 +39,8 @@ module.exports.routes = {
   'get /login': {
        view: 'static/login'
   },
+  
+  '/private': 'DashboardController.index',
 
   'post /login': 'AuthController.login',
 

@@ -28,10 +28,7 @@ module.exports = {
                 if (err)
                     return res.send(err);
 
-                return res.send({
-                    message: info.message,
-                    user: user
-                });
+                return res.redirect('/private');
             });
 
         })(req, res);
