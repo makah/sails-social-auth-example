@@ -1,0 +1,33 @@
+
+<% if (req.session.flash) {  %>
+    <% if (req.session.flash.success) { %>
+        <% for(var i=0; i<req.session.flash.success.length; i++) {%>
+            <div data-alert class="alert-box success radius">
+                <%= req.session.flash.success[i] %>
+                <a href="#" class="close">&times;</a>
+            </div>
+        <% } %>
+        <% req.session.flash.success = undefined %>
+    <% } %>
+    
+    <% if (req.session.flash.warning) { %>
+        <% for(var i=0; i<req.session.flash.warning.length; i++) {%>
+           <div data-alert class="alert-box warning radius">
+                <%= req.session.flash.warning[i] %>
+                <a href="#" class="close">&times;</a>
+            </div>
+        <% } %>
+        <% req.session.flash.warning = undefined %>
+    <% } %>
+    
+    <% if (req.session.flash.error) { %>
+        <% for(var i=0; i<req.session.flash.error.length; i++) {%>
+           <div data-alert class="alert-box alert radius">
+                <%= req.session.flash.error[i] %>
+                <a href="#" class="close">&times;</a>
+            </div>
+        <% } %>
+        <% req.session.flash.error = undefined %>
+    <% } %>
+<% } %>
+
