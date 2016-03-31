@@ -36,19 +36,18 @@ module.exports.routes = {
     view: 'homepage'
   },
   
-  'get /login': {
-       view: 'static/login'
-  },
+  'get /signup': { view: 'static/signup'},
   
-  '/private': 'DashboardController.index',
-
+  'get /login': { view: 'static/login' },
   'post /login': 'AuthController.login',
-
+  
   '/logout': 'AuthController.logout',
-
-  'get /signup': {
-    view: 'static/signup'
-  }
+  
+  
+  
+  
+  '/private': 'DashboardController.index'
+  
 
   /***************************************************************************
   *                                                                          *
