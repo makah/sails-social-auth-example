@@ -43,9 +43,11 @@ module.exports.routes = {
   
   '/logout': 'AuthController.logout',
   
-  
-  
-  
+  '/resetPassword':  'AuthController.sendTokenMail',
+  '/forgotPassword': { view: 'static/forgotPassword' },
+
+
+
   '/private': 'DashboardController.index'
   
 

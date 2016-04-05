@@ -17,6 +17,9 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
+  appUrl: 'http://falcon-medico-makah.c9users.io/',
+  siteName: 'Rate Site',
+
   // models: {
   //   connection: 'someMongodbServer'
   // }

@@ -9,6 +9,10 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
     attributes: {
+        name: {
+            type: 'string',
+            required: true
+        },        
         email: {
             type: 'email',
             required: true,
@@ -19,9 +23,17 @@ module.exports = {
             minLength: 6,
             required: true
         },
+        
+        resetPasswordToken: String,
+        resetPasswordExpires: Date,
+
+        
+        
         toJSON: function() {
             var obj = this.toObject();
             delete obj.password;
+            delete obj.resetPasswordToken;
+            delete obj.resetPasswordExpires;
             return obj;
         }
     },
