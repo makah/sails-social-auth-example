@@ -1,8 +1,6 @@
-<p>Dear ,</p>
+<p>Dear <%=recipientName%>,</p>
 <br/>
-<p>You have requested a new password for your account registered with  Email.</p>
+<p>You have requested a new password for your account registered with <%=siteName%> Email.</p>
 <p>Click the following button to change your password</p></p>
-<a style="display:block;color:#ffffff;background-color:#357df4;margin:48px 0 40px 0;min-height:48px;line-height:48px;padding:0 1em;font-weight:bold;" href="/password_resets/" target="_blank">Change Password</a>
-
-
-
+<a style="display:block;color:#ffffff;background-color:#357df4;margin:48px 0 40px 0;min-height:48px;line-height:48px;padding:0 1em;font-weight:bold;" href="<%=siteAddrs%>/password_resets/<%=token%>" target="_blank">Change Password</a>
+<p>Thanks for using us!</p>
