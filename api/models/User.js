@@ -21,33 +21,60 @@ module.exports = {
         password: {
             type: 'string',
             minLength: 6,
-            required: true
         },
         
         resetPasswordToken: String,
         resetPasswordExpires: Date,
-
-        
         
         toJSON: function() {
             var obj = this.toObject();
             delete obj.password;
             delete obj.resetPasswordToken;
             delete obj.resetPasswordExpires;
+            
             return obj;
         }
     },
+    
+    afterValidate:  function(user, next) {
+        if (!user.password && !user.googleId) {
+            var err = 'Missing password or single sigon';
+            sails.log.error('User.afterValidate', err);
+            return next(err);
+        }
+        
+        return next();
+    },
+    
     beforeCreate: function(user, cb) {
-        bcrypt.genSalt(9, function(err, salt) {
-            bcrypt.hash(user.password, salt, function(err, hash) {
-                if (err) {
-                    console.log(err);
-                    cb(err);
-                } else {
-                    user.password = hash;
-                    cb();
-                }
-            });
-        });
+        if (user.password) {
+            encryptPassword(user, cb);
+        }
+        else {
+            return cb();
+        }
+    },
+    
+    beforeUpdate: function(user, cb) {
+        if (user.password) {
+            encryptPassword(user, cb);
+        }
+        else {
+            return cb();
+        }
     }
 };
+
+function encryptPassword(user, cb) {
+    bcrypt.genSalt(9, function(err, salt) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) {
+                sails.log.error('User.beforeCreate', err);
+                return cb(err);
+            }
+            
+            user.password = hash;
+            return cb();
+        });
+    });
+}
