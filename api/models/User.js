@@ -23,6 +23,12 @@ module.exports = {
             minLength: 6,
         },
         
+        //Google Signin ID
+        googleId: 'string',
+        
+        //Access token from the Google Authorization Server
+        googleAccessToken: 'string',
+        
         resetPasswordToken: String,
         resetPasswordExpires: Date,
         

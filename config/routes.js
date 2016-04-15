@@ -40,7 +40,8 @@ module.exports.routes = {
   
   'get /login': { view: 'static/login' },
   'post /login': 'AuthController.login',
-  
+  '/loginGoogle': 'AuthController.loginGoogle',
+
   '/logout': 'AuthController.logout',
   
   '/forgotPassword': { view: 'static/forgotPassword' },

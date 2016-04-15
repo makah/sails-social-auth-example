@@ -33,6 +33,27 @@ module.exports = {
 
         })(req, res);
     },
+     
+    loginGoogle: function(req, res) {
+        sails.log.info('AuthController.loginGoogle: ', 'Params', req.params.all());
+        var permissions = ['profile','email'];
+        
+        passport.authenticate('google', {failureRedirect: '/loginGoogle', scope: permissions}, function(err, user, info) {
+            if ((err) || (!user)) {
+                return res.send({
+                    err: err,
+                    info: info,
+                    user: user
+                });
+            }
+            req.logIn(user, function(err) {
+                if (err)
+                    return res.send(err);
+
+                return res.redirect('/private');
+            });
+        })(req, res);
+    },
 
     logout: function(req, res) {
         req.logout();
@@ -79,7 +100,7 @@ module.exports = {
                     recipientName: user.name,
                     senderMail: user.email,
                     siteName: sails.config.siteName,
-                    siteAddrs: sails.config.appUrl,
+                    siteAddrs: process.env.APP_URL || 'https://www.myFirst-rateSite.com',
                     token: token
                 };
 
@@ -155,7 +176,7 @@ module.exports = {
                     resetPasswordExpires: {'>': Date.now()}
                 };
                 
-                sails.log.silly(findParam);
+                sails.log.silly('AuthController.updatePassword',findParam);
 
                 User.findOne(findParam, function(err, user) {
                     if (!user) {
@@ -166,8 +187,8 @@ module.exports = {
                     }
 
                     user.password = params.password;
-                    user.resetPasswordToken = undefined;
-                    user.resetPasswordExpires = undefined;
+                    user.resetPasswordToken = null;
+                    user.resetPasswordExpires = null;
 
                     user.save(function(err) {
                         req.logIn(user, function(err) {
