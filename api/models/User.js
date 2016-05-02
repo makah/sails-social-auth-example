@@ -22,7 +22,7 @@ module.exports = {
             type: 'string',
             minLength: 6,
         },
-        
+
         //Google Signin ID
         googleId: 'string',
         
@@ -42,17 +42,13 @@ module.exports = {
         }
     },
     
-    afterValidate:  function(user, next) {
+    beforeCreate: function(user, cb) {
         if (!user.password && !user.googleId) {
             var err = 'Missing password or single sigon';
-            sails.log.error('User.afterValidate', err);
-            return next(err);
+            sails.log.error('User.beforeCreate', err);
+            return cb(err);
         }
         
-        return next();
-    },
-    
-    beforeCreate: function(user, cb) {
         if (user.password) {
             encryptPassword(user, cb);
         }
@@ -62,24 +58,26 @@ module.exports = {
     },
     
     beforeUpdate: function(user, cb) {
-        if (user.password) {
+        if (user.password && user.password.length < 60) {
             encryptPassword(user, cb);
         }
         else {
             return cb();
         }
     }
+    
 };
 
 function encryptPassword(user, cb) {
     bcrypt.genSalt(9, function(err, salt) {
         bcrypt.hash(user.password, salt, function(err, hash) {
             if (err) {
-                sails.log.error('User.beforeCreate', err);
+                sails.log.error('User.encryptPassword', err);
                 return cb(err);
             }
             
             user.password = hash;
+            
             return cb();
         });
     });
