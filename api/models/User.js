@@ -29,8 +29,8 @@ module.exports = {
         //Access token from the Google Authorization Server
         googleAccessToken: 'string',
         
-        resetPasswordToken: String,
-        resetPasswordExpires: Date,
+        resetPasswordToken: 'string',
+        resetPasswordExpires: 'string',
         
         toJSON: function() {
             var obj = this.toObject();
